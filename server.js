@@ -58,20 +58,28 @@ app.post('/api/v1/projects', async (req, res) => {
   } else {
     try {
       const newProject = await database('projects').insert({ ...req.body, id: uuidv4() }).returning('*')
-      res.status(201).json(newProject)
+      res.status(201).json({ data: newProject[0] })
     } catch (error) {
       res.status(500).json({error})
     }
   }
 })
 
-// app.patch('/api/v1/projects/:id', async (req, res) => {
-//   const { id } = req.params
-//   try {
-//     const project = await database('projects').update(req.body).where('id', id)
-//   } catch (error) {
-//     res.status(500).json({error})
-//   }
-// })
+app.patch('/api/v1/projects/:id', async (req, res) => {
+  const { id } = req.params
+  const missingParams = findMissingParams(req.body)
+  if (missingParams.length) {
+    res.status(422).json({
+      error: `You are missing a required parameter of ${missingParams.join(', ')}.`
+    })
+  } else {
+    try {
+      const updatedProject = await database('projects').update(req.body).where('id', id).returning('*')
+      updatedProject[0] ? res.status(200).json({ data: updatedProject[0] }) : res.status(404).json({error: `Project with id ${id} not found.`})
+    } catch (error) {
+      res.status(500).json({error})
+    }
+  }
+})
 
 app.listen(8080, () => console.log('server listening on post 8080'))
