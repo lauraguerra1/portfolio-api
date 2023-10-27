@@ -6,6 +6,11 @@ const configuration = require('./db/knexfile')[process.env.NODE_ENV];
 const database = require('knex')(configuration);
 const { v4: uuidv4 } = require('uuid');
 
+const findMissingParams = (project) => {
+  const missingParams = ['title', 'tech', 'link', 'gh', 'description', 'instructions', 'image'].filter(requiredParam => project[requiredParam] === undefined)
+  return missingParams
+}
+
 
 // const router = require('./routes');
 
@@ -45,8 +50,7 @@ app.get('/api/v1/projects', async (req, res) => {
 })
 
 app.post('/api/v1/projects', async (req, res) => {
-
-  const missingParams = ['title', 'tech', 'link', 'gh', 'description', 'instructions', 'image'].filter(requiredParam => req.body[requiredParam] === undefined)
+  const missingParams = findMissingParams(req.body)
   if (missingParams.length) {
     res.status(422).json({
       error: `You are missing a required parameter of ${missingParams.join(', ')}.`
@@ -59,8 +63,15 @@ app.post('/api/v1/projects', async (req, res) => {
       res.status(500).json({error})
     }
   }
-  
-   
 })
+
+// app.patch('/api/v1/projects/:id', async (req, res) => {
+//   const { id } = req.params
+//   try {
+//     const project = await database('projects').update(req.body).where('id', id)
+//   } catch (error) {
+//     res.status(500).json({error})
+//   }
+// })
 
 app.listen(8080, () => console.log('server listening on post 8080'))
