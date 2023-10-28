@@ -82,4 +82,15 @@ app.patch('/api/v1/projects/:id', async (req, res) => {
   }
 })
 
+app.delete('/api/v1/projects/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    await database('projects').where('id', id).del()
+    res.status(200).json({ message: `Project id ${id} deleted.` }) 
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({error})
+  }
+})
+
 app.listen(8080, () => console.log('server listening on post 8080'))
