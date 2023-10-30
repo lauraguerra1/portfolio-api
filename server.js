@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express');
 const jwtDecode = require('jwt-decode');
-const configuration = require('./db/knexfile')[process.env.NODE_ENV];
+const configuration = require('./knexfile')[process.env.NODE_ENV];
 const database = require('knex')(configuration);
 const { v4: uuidv4 } = require('uuid');
 
@@ -40,7 +40,7 @@ app.get('/api/v1/users/:jwt', async (req, res) => {
 
 app.get('/api/v1/projects', async (req, res) => {
   try {
-    const projects = await database('projects').select()
+    const projects = await database('projects').select().orderBy('created_at', "desc")
     res.status(200).json({
       data: projects
     })

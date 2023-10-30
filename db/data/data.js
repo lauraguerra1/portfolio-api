@@ -20,7 +20,8 @@ const projects = [
     link: 'https://celestial-cycle.vercel.app/',
     gh: 'https://github.com/lauraguerra1/celestial-cycle',
     description: 'Combine astrological insights with menstrual cycle tracking. Created during WWCode Hackathon for Social Impact 2023.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467266Z'
   },
   {
     id: uuidv4(),
@@ -30,8 +31,10 @@ const projects = [
     link: 'https://project-planner-ui.vercel.app/',
     gh: 'https://github.com/lauraguerra1/project-planner-ui',
     description: 'An AI generator and organizational tool for developers to curate project plans.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467265Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Style Stash',
@@ -40,8 +43,10 @@ const projects = [
     link: 'https://style-stash.vercel.app/',
     gh: 'https://github.com/lauraguerra1/style-stash',
     description: 'A virtual closet for tracking clothing items and planning outfits.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467264Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Pawfect Match',
@@ -50,8 +55,10 @@ const projects = [
     link: 'https://pawfect-match-laura.vercel.app/',
     gh: 'https://github.com/lauraguerra1/pawfect-match',
     description: 'An online guide to discovering the ideal pet companion based on your unique personality traits.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467263Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Makeup 360',
@@ -60,8 +67,10 @@ const projects = [
     link: 'https://makeup-360.vercel.app/',
     gh: 'https://github.com/lauraguerra1/makeup-360',
     description: 'A one-stop destination designed for exploring and shopping for the perfect cosmetics collection.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467262Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Rancid Tomatillos',
@@ -70,8 +79,10 @@ const projects = [
     link: 'https://rancid-tomatillos-laura.vercel.app/',
     gh: 'https://github.com/lauraguerra1/rancid-tomatillos',
     description: 'Explore, filter, and preview movies with ease.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467261Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Overlook',
@@ -81,6 +92,7 @@ const projects = [
     gh: 'https://github.com/lauraguerra1/overlook',
     description: 'A hotel booking website.', 
     instructions: 'username: customer50,password: overlook2021',
+    created_at: '2023-10-30T02:59:10.467260Z'
   },
   {
     id: uuidv4(),
@@ -90,8 +102,10 @@ const projects = [
     link: 'https://lauraguerra1.github.io/whats-cookin/',
     gh: 'https://github.com/lauraguerra1/whats-cookin',
     description: 'The ultimate culinary companion for discovering and searching recipes.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467259Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Tic-Tac-Toe',
@@ -100,8 +114,10 @@ const projects = [
     link: 'https://laura-tic-tac-toe.vercel.app/',
     gh: 'https://github.com/lauraguerra1/tic-tac-toe',
     description: 'A fun and simple game of tic tac toe with cuddly characters.', 
-    instructions: null
+    instructions: null,
+    created_at: '2023-10-30T02:59:10.467258Z'
   },
+ 
   {
     id: uuidv4(),
     title: 'Rock Paper Scissors',
@@ -109,7 +125,8 @@ const projects = [
     image: 'https://i.imgur.com/mMsp62i.png',
     link: 'https://lauraguerra1.github.io/rock-paper-scissors-project/',
     gh: 'https://github.com/lauraguerra1/rock-paper-scissors-project',
-    description: 'Play against the computer in a classic game of Rock, Paper, Scissors!'
+    description: 'Play against the computer in a classic game of Rock, Paper, Scissors!',
+    created_at: '2023-10-30T02:59:10.467257Z'
   }
 ]
 
