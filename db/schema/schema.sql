@@ -3,8 +3,8 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     auth_token VARCHAR(255) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT current_timestamp,
-    updated_at TIMESTAMPTZ DEFAULT current_timestamp
+    created_at TIMESTAMPTZ DEFAULT current_timestamp(6),
+    updated_at TIMESTAMPTZ DEFAULT current_timestamp(6)
 );
 
 CREATE TABLE projects (
@@ -16,6 +16,6 @@ CREATE TABLE projects (
     gh VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     instructions VARCHAR(255),
-    created_at TIMESTAMPTZ DEFAULT current_timestamp,
-    updated_at TIMESTAMPTZ DEFAULT current_timestamp
+    created_at TIMESTAMPTZ DEFAULT current_timestamp(6),
+    updated_at TIMESTAMPTZ DEFAULT current_timestamp(6)
 );

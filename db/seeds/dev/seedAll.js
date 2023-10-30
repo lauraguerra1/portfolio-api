@@ -4,10 +4,9 @@ dotenv.config()
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
  */
-const {users, projects} = require('../../data/data')
+const { users, projects } = require('../../data/data')
 
 exports.seed = async function(knex) {
-  // Deletes ALL existing entries
   try {
 
     await knex('projects').del()

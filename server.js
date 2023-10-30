@@ -40,7 +40,7 @@ app.get('/api/v1/users/:jwt', async (req, res) => {
 
 app.get('/api/v1/projects', async (req, res) => {
   try {
-    const projects = await database('projects').select()
+    const projects = await database('projects').select().orderBy('created_at', "desc")
     res.status(200).json({
       data: projects
     })
