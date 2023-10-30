@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express');
 const jwtDecode = require('jwt-decode');
-const configuration = require('./db/knexfile')[process.env.NODE_ENV];
+const configuration = require('./knexfile')[process.env.NODE_ENV];
 const database = require('knex')(configuration);
 const { v4: uuidv4 } = require('uuid');
 
