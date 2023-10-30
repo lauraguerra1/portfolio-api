@@ -1,6 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express');
+const cors = require('cors');
 const jwtDecode = require('jwt-decode');
 const configuration = require('./knexfile')[process.env.NODE_ENV];
 const database = require('knex')(configuration);
@@ -16,6 +17,9 @@ const findMissingParams = (project) => {
 
 
 const app = express();
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://portfolio-lauraguerra1.vercel.app']
+}));
 app.use(express.json());
 // app.use(router)
 
