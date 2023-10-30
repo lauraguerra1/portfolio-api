@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed:all": "./node_modules/.bin/knex --knexfile ./db/knexfile.js seed:run"
+    "seed:all": "./node_modules/.bin/knex --knexfile ./knexfile.js seed:run",
+    "migrate:latest": "./node_modules/.bin/knex --knexfile ./knexfile.js migrate:latest"
   },
   "keywords": [],
   "author": "",
