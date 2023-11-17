@@ -18,7 +18,7 @@ const findMissingParams = (project) => {
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://portfolio-lauraguerra1.vercel.app', 'https://www.lauragarciaguerra.com/']
+  origin: ['http://localhost:3000', 'https://portfolio-lauraguerra1.vercel.app', 'https://www.lauragarciaguerra.com']
 }));
 app.use(express.json());
 // app.use(router)
