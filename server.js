@@ -80,6 +80,69 @@ app.post('/api/v1/mail',  (req, res) => {
   } else {
     const { name, email, inquiry, message } = req.body
 
+    const createEmail = (innerHTML) => {
+      const imgSrc = inquiry === 'Web Services' ? 'https://i.imgur.com/jQ9la2m.png' : 'https://i.imgur.com/c53daE3.png'
+      return (
+        `<html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+          <style>
+            * {
+              font-family: 'Playfair Display', serif;
+              font-size: 20px;
+              color: black;
+            }
+            
+            body {
+              margin: 20px;
+              padding: 20px;
+            }
+      
+            h1 {
+              color: #AC7D63;
+              text-align: center;
+              font-size: 30px;
+            }
+      
+            p {
+              margin: 10px 0;
+            }
+      
+            .message {
+              background-color: #FFFCF8;
+              padding: 15px;  
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+      
+            .header-image {
+              width: 100%;
+              max-width: 400px;
+              margin: 0 auto;
+            }
+            
+            .flex-center {
+              display: flex;
+              justify-content: center;
+            }
+          </style>
+        </head>
+        <body>
+          <div class='flex-center'>
+            <img src=${imgSrc} alt="LGG Web Services / Laura Garcia Guerra logo" class="header-image">
+          </div>
+          <div class="message">
+            ${innerHTML}
+          </div>
+      </body> 
+    </html>`
+      )
+    }
+
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -89,7 +152,59 @@ app.post('/api/v1/mail',  (req, res) => {
         pass: process.env.MAILER_PASS 
       }  
     })
-    
+
+    const adminMailOptions = {
+    from: process.env.MAILER_EMAIL,
+    to: process.env.MAILER_EMAIL, 
+    subject: `${inquiry} Inquiry - via portfolio`,
+    text: `New Inquiry From ${name} \n Message: ${message} \n Email Address: ${email}`,
+    html: createEmail(
+      `<h1>New Inquiry From ${name}</h1>
+      <p>Message: ${message}</p>
+      <p>Email Address: ${email}</p>`
+    ), 
+    replyTo: email
+  };
+
+    const userMailOptions = {
+      from: process.env.MAILER_EMAIL,
+      to: email, 
+      subject: `Thank You For Your Inquiry ${inquiry !== 'Other' ? 'Regarding' + inquiry : ''}`,
+      text: '', 
+      html: createEmail(
+        `<h1>Thank you for your recent inquiry, ${name}.</h1>
+        <p>Hello ${name},</p>
+        <p>I hope this message finds you well. Thank you for reaching out${inquiry !== 'Other' ? ' regarding' +  inquiry : ''}!</p>
+        <p>I want to assure you that I've received your inquiry and am looking forward to connecting with you further. Your interest means a lot to me.</p>
+        <p>I will review your inquiry thoroughly and get back to you within the next two business days.</p>
+        <p>If you have any additional details or questions in the meantime, please feel free to reply to this email. Looking forward to connecting soon!</p>
+        <p>Best regards,<br/>
+        Laura Garcia Guerra<br/>
+        Software Engineer<br/>
+        www.lauragarciaguerra.com
+        <br></br>
+        Contact Information:<br/>
+        Phone: 310-770-6009<br/>
+        Email: l.garciaguerra1@gmail.com<br/>
+        Calendly Schedule: https://calendly.com/laura-guerra-calendar/30min
+        </p>
+        `)
+    }
+
+    transporter.sendMail(adminMailOptions, (error) => {
+      if (error) {
+        res.status(500).json({error})
+      } else {
+        transporter.sendMail(userMailOptions, (err, info) => {
+          if (err) {
+            res.status(500).json({err})
+          } else {
+            res.status(200).json({message: info.response})
+          }
+        })
+      }
+    })
+
   }
 
 })
