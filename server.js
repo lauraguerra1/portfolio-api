@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const dotenv = require('dotenv')
 dotenv.config()
 const express = require('express');
@@ -69,6 +70,30 @@ app.post('/api/v1/projects', async (req, res) => {
   }
 })
 
+app.post('/api/v1/mail',  (req, res) => {
+  const missingParams = ['name', 'email', 'inquiry', 'message'].filter(param => req.body[param] === undefined)
+  
+  if (missingParams.length) {
+    res.status(422).json({
+      error: `You are missing a required parameter of ${missingParams.join(', ')}.`
+    })
+  } else {
+    const { name, email, inquiry, message } = req.body
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, 
+      auth: {
+        user: process.env.MAILER_EMAIL,
+        pass: process.env.MAILER_PASS 
+      }  
+    })
+    
+  }
+
+})
+
 app.patch('/api/v1/projects/:id', async (req, res) => {
   const { id } = req.params
   const missingParams = findMissingParams(req.body)
@@ -96,5 +121,7 @@ app.delete('/api/v1/projects/:id', async (req, res) => {
     res.status(500).json({error})
   }
 })
+
+
 
 app.listen(8080, () => console.log('server listening on post 8080'))
