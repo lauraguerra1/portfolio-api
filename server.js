@@ -19,7 +19,7 @@ const findMissingParams = (project) => {
 
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://portfolio-lauraguerra1.vercel.app']
+  origin: ['http://localhost:3000', 'https://portfolio-lauraguerra1.vercel.app', 'https://www.lauragarciaguerra.com']
 }));
 app.use(express.json());
 // app.use(router)
@@ -236,7 +236,5 @@ app.delete('/api/v1/projects/:id', async (req, res) => {
     res.status(500).json({error})
   }
 })
-
-
 
 app.listen(8080, () => console.log('server listening on post 8080'))
