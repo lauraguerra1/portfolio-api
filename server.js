@@ -169,12 +169,12 @@ app.post('/api/v1/mail',  (req, res) => {
     const userMailOptions = {
       from: process.env.MAILER_EMAIL,
       to: email, 
-      subject: `Thank You For Your Inquiry ${inquiry !== 'Other' ? 'Regarding' + inquiry : ''}`,
+      subject: `Thank You For Your Inquiry ${inquiry !== 'Other' ? 'Regarding ' + inquiry : ''}`,
       text: '', 
       html: createEmail(
         `<h1>Thank you for your recent inquiry, ${name}.</h1>
         <p>Hello ${name},</p>
-        <p>I hope this message finds you well. Thank you for reaching out${inquiry !== 'Other' ? ' regarding' +  inquiry : ''}!</p>
+        <p>I hope this message finds you well. Thank you for reaching out${inquiry !== 'Other' ? ' regarding ' +  inquiry : ''}!</p>
         <p>I want to assure you that I've received your inquiry and am looking forward to connecting with you further. Your interest means a lot to me.</p>
         <p>I will review your inquiry thoroughly and get back to you within the next two business days.</p>
         <p>If you have any additional details or questions in the meantime, please feel free to reply to this email. Looking forward to connecting soon!</p>
